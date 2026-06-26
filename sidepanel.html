@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <header>
+    <h1>RDP Quick Type</h1>
+    <p class="hint">Click into the RDP session first, then click a snippet to type it. <code>⏎</code> = type then press Enter.</p>
+  </header>
+
+  <section id="status" class="status" hidden></section>
+
+  <section class="list" id="list"><!-- rows injected by sidepanel.js --></section>
+
+  <section class="add">
+    <input id="newLabel" type="text" placeholder="Label (what you see in the list)">
+    <textarea id="newText" rows="2" placeholder="Text to type into the session"></textarea>
+    <button id="addBtn">Add snippet</button>
+  </section>
+
+  <footer>
+    <label class="row">
+      <span>Typing speed (ms/key)</span>
+      <input id="keyDelay" type="number" min="0" max="500" step="5" value="30">
+    </label>
+    <button id="releaseBtn" class="secondary" title="Detach the debugger and remove the yellow banner">Release debugger</button>
+  </footer>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>
