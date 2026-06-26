@@ -1,4 +1,4 @@
-# Architecture — RDP Quick Type
+# Architecture — TypeBridge
 
 ## Topology
 ```

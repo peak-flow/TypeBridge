@@ -1,4 +1,4 @@
-// RDP Quick Type — background service worker
+// TypeBridge — background service worker
 //
 // Types snippets into the active tab's web Remote Desktop client by sending
 // real key events through the Chrome DevTools Protocol (Input.dispatchKeyEvent).

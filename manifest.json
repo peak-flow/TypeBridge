@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "RDP Quick Type",
+  "name": "TypeBridge",
   "version": "0.1.0",
   "description": "Click items from a list to type them as real keystrokes into a web Remote Desktop session — bypasses copy/paste and the Mac/Windows key mismatch.",
   "permissions": ["debugger", "storage", "sidePanel", "tabs"],
   "background": { "service_worker": "background.js" },
-  "action": { "default_title": "RDP Quick Type — open snippet panel" },
+  "action": { "default_title": "TypeBridge — open snippet panel" },
   "side_panel": { "default_path": "sidepanel.html" }
 }

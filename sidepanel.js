@@ -1,4 +1,4 @@
-// RDP Quick Type — side panel UI
+// TypeBridge — side panel UI
 // Manages the snippet list (stored in chrome.storage.local) and asks the
 // background service worker to type a snippet into the active RDP tab.
 
@@ -144,18 +144,18 @@ function normalizeItems(raw) {
 
 $("#exportBtn").addEventListener("click", () => {
   const header =
-    "# RDP Quick Type — exported snippets\n" +
+    "# TypeBridge — exported snippets\n" +
     "# Edit in any text editor, then use Import. label = what you see; text = what gets typed.\n";
   const body = jsyaml.dump(
     { items: items.map((it) => ({ label: it.label, text: it.text })) },
     { lineWidth: -1 }
   );
-  downloadFile("rdp-quick-type-snippets.yaml", header + body);
+  downloadFile("typebridge-snippets.yaml", header + body);
   showStatus(`Exported ${items.length} snippet(s).`, "ok");
 });
 
 $("#exampleBtn").addEventListener("click", () => {
-  const example = `# RDP Quick Type — snippet list
+  const example = `# TypeBridge — snippet list
 # Each item below becomes a button in the panel.
 #   label: what you see in the list
 #   text:  exactly what gets typed into the remote session
@@ -175,7 +175,7 @@ items:
   - label: Long note
     text: This whole sentence types out exactly as written.
 `;
-  downloadFile("rdp-quick-type-example.yaml", example);
+  downloadFile("typebridge-example.yaml", example);
   showStatus("Downloaded example file — open it in a text editor to see the format.", "ok");
 });
 

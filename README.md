@@ -1,4 +1,6 @@
-# RDP Quick Type
+# TypeBridge
+
+*Bridges your typing across the Remote Desktop gap — click a saved snippet and it types itself into the session, no copy/paste required.*
 
 A Chrome extension that turns a list of saved snippets into clickable buttons.
 Click one and it **types the text for you** into a web-based Remote Desktop

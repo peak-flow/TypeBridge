@@ -1,4 +1,4 @@
-# Conversation Log — RDP Quick Type
+# Conversation Log — TypeBridge
 
 ## 2026-06-26
 

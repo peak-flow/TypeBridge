@@ -1,4 +1,4 @@
-# RDP Quick Type — TODO / Progress
+# TypeBridge — TODO / Progress
 
 ## Goal
 A Chrome extension (runs in the **Mac's Chrome**) showing a clickable list of saved
