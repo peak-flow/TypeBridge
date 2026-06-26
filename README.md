@@ -14,33 +14,33 @@ session — as if you'd typed it on the keyboard.
 
 The day-to-day problem it solves:
 
-- **testlab** is a Windows machine reached through a **web Remote Desktop** session
-  that runs inside a Chrome tab. The machine is air-gapped (no other internet) and
-  locked down — you can only open Chrome on it, nothing can be installed there.
-- Working from a **Mac**, two things constantly get in the way:
-  1. **`Cmd` vs `Ctrl`.** Mac copy/paste uses `Cmd`, Windows uses `Ctrl`. Muscle
-     memory fights you, and the wrong key does the wrong thing.
-  2. **Copy/paste is flaky.** Even with the right keys, the clipboard doesn't
-     reliably make it across the Remote Desktop connection.
+- You work with a remote machine through a **web-based Remote Desktop** session
+  that runs inside a Chrome tab.
+- The remote screen may be rendered as a canvas, so there are no local form
+  fields for an extension to fill directly.
+- Copy/paste can be unreliable across the browser-to-remote-desktop boundary.
+- If your local and remote machines use different shortcut conventions, like
+  Mac `Cmd` versus Windows/Linux `Ctrl`, muscle memory gets weirdly expensive.
 
-So getting a username, a server path, or a block of text into that session is
-slow and error-prone. This extension sidesteps the whole problem: instead of
-copying and pasting, it **types** your saved text straight into the session,
-character by character, as real keystrokes.
+So getting a username, a server path, a command, or a block of text into that
+remote session can become slow and error-prone. This extension sidesteps the
+whole problem: instead of copying and pasting, it **types** your saved text
+straight into the session, character by character, as real keystrokes.
 
 ## How it works (in short)
 
-The remote screen is drawn as an image (a `<canvas>`) inside your Mac's Chrome,
-so there are no text boxes to fill — you can only "type" into it. The extension
-uses Chrome's built-in automation (the DevTools Protocol) to send genuine key
-presses to that tab. The Remote Desktop client forwards them to Windows exactly
-as if they came from your keyboard. No clipboard, no `Cmd`/`Ctrl` confusion.
+Many web Remote Desktop clients draw the remote screen as an image or a
+`<canvas>` inside your local Chrome, so there may be no text boxes to fill on
+the local page. The extension uses Chrome's built-in automation (the DevTools
+Protocol) to send genuine key presses to that tab. The Remote Desktop client
+forwards them to the remote machine exactly as if they came from your keyboard.
+No clipboard handoff, no shortcut-translation circus.
 
 Because of that, while it's typing you'll see Chrome's yellow
 *"…started debugging this browser"* bar — that's normal and expected.
 
-> The extension runs entirely in your **Mac's Chrome**. It never installs anything
-> on, or connects to, the locked-down testlab machine.
+> The extension runs entirely in your **local Chrome**. It never installs
+> anything on, or connects directly to, the remote machine.
 
 ## Install
 
@@ -85,7 +85,6 @@ it up or move it.
 | `background.js` | The keystroke engine. |
 | `sidepanel.html` / `.css` / `.js` | The snippet-list UI. |
 | `js-yaml.min.js` | Bundled YAML parser for Export/Import (runs offline). |
-| `spike/` | A one-off console test used while figuring out the approach. |
 | `README-todo.md`, `readme-architecture.md`, `conversation.md` | Project notes. |
 
 See **`readme-architecture.md`** for the design details and trade-offs.

@@ -1,26 +1,25 @@
 # TypeBridge — TODO / Progress
 
 ## Goal
-A Chrome extension (runs in the **Mac's Chrome**) showing a clickable list of saved
-snippets. Clicking one types it as **real keystrokes** into the web Remote Desktop
-session in the active tab — bypassing the flaky RDP clipboard and the Mac `Cmd` /
-Windows `Ctrl` mismatch.
+A Chrome extension (runs in **local Chrome**) showing a clickable list of saved
+snippets. Clicking one types it as **real keystrokes** into a web Remote Desktop
+session in the active tab — bypassing flaky remote clipboard handoff and local /
+remote shortcut mismatches.
 
 ## Context / Constraints
-- **testlab** = air-gapped Windows box reached via a **web RDP client shown in a Chrome tab** on the Mac.
-- Remote box is **locked down**: cannot install anything, can only open Chrome there.
-- ⇒ Extension lives in the **Mac's Chrome** and injects into the RDP `<canvas>`. We never touch the remote box.
+- Remote machine is reached via a **web Remote Desktop client shown in a Chrome tab**.
+- Remote environments may be restricted: no installs, no local helper scripts, browser-only access.
+- ⇒ Extension lives in **local Chrome** and injects into the RDP `<canvas>`. We never touch the remote box.
 - RDP screen is a `<canvas>`, so we cannot set DOM field values — we must simulate key presses.
 - Injection method: **`chrome.debugger` + `Input.dispatchKeyEvent`** (delivers trusted-level key events the RDP client forwards). Trade-off: Chrome shows a "being debugged" banner while active.
 
 ## Tasks
 - [x] Decide topology & injection method (architecture-first)
-- [x] Feasibility spike (`spike/synthetic-keys-test.js`) — optional, user chose to skip
 - [x] Scaffold MV3 extension (manifest, background, side panel)
 - [x] Keystroke engine (keymap + `Input.dispatchKeyEvent`, Shift handling)
 - [x] Side panel UI: add / delete / reorder snippets, click-to-type, type-then-Enter
 - [x] Settings: typing speed; Release-debugger button
-- [x] Load unpacked & tested against the real testlab RDP session — typing **confirmed working**
+- [x] Load unpacked & tested against a real web Remote Desktop session — typing **confirmed working**
 - [x] Verified CDP keystrokes land while the side panel has focus
 - [x] Export / Import snippets as **YAML** + downloadable example file (import is additive; also reads legacy JSON)
 - [ ] (If the banner is unwanted and synthetic events work) add an optional synthetic-event mode
