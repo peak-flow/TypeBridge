@@ -27,7 +27,7 @@
       <button id="importBtn" class="secondary" title="Load snippets from a file (added to your list)">Import…</button>
       <button id="exampleBtn" class="secondary" title="Download a sample file that shows the format">Example file</button>
     </div>
-    <input id="importFile" type="file" accept=".json,application/json" hidden>
+    <input id="importFile" type="file" accept=".yaml,.yml,.json,text/yaml,application/json" hidden>
   </section>
 
   <footer>
@@ -38,6 +38,7 @@
     <button id="releaseBtn" class="secondary" title="Detach the debugger and remove the yellow banner">Release debugger</button>
   </footer>
 
+  <script src="js-yaml.min.js"></script>
   <script src="sidepanel.js"></script>
 </body>
 </html>

@@ -143,27 +143,39 @@ function normalizeItems(raw) {
 }
 
 $("#exportBtn").addEventListener("click", () => {
-  const payload = {
-    format: "rdp-quick-type",
-    version: 1,
-    items: items.map((it) => ({ label: it.label, text: it.text }))
-  };
-  downloadFile("rdp-quick-type-snippets.json", JSON.stringify(payload, null, 2));
+  const header =
+    "# RDP Quick Type — exported snippets\n" +
+    "# Edit in any text editor, then use Import. label = what you see; text = what gets typed.\n";
+  const body = jsyaml.dump(
+    { items: items.map((it) => ({ label: it.label, text: it.text })) },
+    { lineWidth: -1 }
+  );
+  downloadFile("rdp-quick-type-snippets.yaml", header + body);
   showStatus(`Exported ${items.length} snippet(s).`, "ok");
 });
 
 $("#exampleBtn").addEventListener("click", () => {
-  const example = {
-    format: "rdp-quick-type",
-    version: 1,
-    _README: "Each entry in 'items' becomes a button. 'label' is what you see in the list; 'text' is exactly what gets typed. Edit this file in any text editor, then use Import. A plain array like [ {\"label\":\"x\",\"text\":\"y\"} ] also works.",
-    items: [
-      { label: "My username", text: "jsmith" },
-      { label: "Server share", text: "\\\\fileserver\\share\\reports" },
-      { label: "Long note", text: "This whole sentence types out exactly as written." }
-    ]
-  };
-  downloadFile("rdp-quick-type-example.json", JSON.stringify(example, null, 2));
+  const example = `# RDP Quick Type — snippet list
+# Each item below becomes a button in the panel.
+#   label: what you see in the list
+#   text:  exactly what gets typed into the remote session
+#
+# Tips:
+#   - No quotes or commas needed for normal text.
+#   - Backslashes are fine as-is — no doubling: \\\\fileserver\\share works.
+#   - If the text has a colon-space ": " or starts with a special character,
+#     wrap it in single quotes:   text: 'value: with colon'
+#   - Lines starting with # are comments and are ignored.
+
+items:
+  - label: My username
+    text: jsmith
+  - label: Server share
+    text: \\\\fileserver\\share\\reports
+  - label: Long note
+    text: This whole sentence types out exactly as written.
+`;
+  downloadFile("rdp-quick-type-example.yaml", example);
   showStatus("Downloaded example file — open it in a text editor to see the format.", "ok");
 });
 
@@ -174,7 +186,7 @@ $("#importFile").addEventListener("change", async (e) => {
   e.target.value = ""; // reset so the same file can be picked again later
   if (!file) return;
   try {
-    const data = JSON.parse(await file.text());
+    const data = jsyaml.load(await file.text());
     const incoming = normalizeItems(data);
     if (!incoming) {
       showStatus('That file isn\'t in the expected format (needs an "items" list).', "err");

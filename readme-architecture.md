@@ -23,7 +23,8 @@ exactly as if typed.
 |------|------|
 | `manifest.json` | MV3 manifest. Permissions: `debugger`, `storage`, `sidePanel`, `tabs`. |
 | `background.js` | Service worker = keystroke engine. Attaches the debugger to the active tab and sends `Input.dispatchKeyEvent` per character (with Shift handling). Manages attach/detach + errors. |
-| `sidepanel.html` / `.css` / `.js` | Snippet list UI. Persists snippets + settings in `chrome.storage.local`; sends `type` messages to the background. |
+| `sidepanel.html` / `.css` / `.js` | Snippet list UI. Persists snippets + settings in `chrome.storage.local`; sends `type` messages to the background; exports/imports the list as YAML. |
+| `js-yaml.min.js` | Vendored YAML parser (v4.1.0) for human-friendly export/import files. CSP-safe (no `eval`/`Function`); also reads legacy JSON since JSON is valid YAML. |
 | `spike/synthetic-keys-test.js` | Standalone DevTools-console test of the synthetic-event path (optional). |
 
 ## Typing data flow

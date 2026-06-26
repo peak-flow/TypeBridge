@@ -22,7 +22,7 @@ Windows `Ctrl` mismatch.
 - [x] Settings: typing speed; Release-debugger button
 - [x] Load unpacked & tested against the real testlab RDP session — typing **confirmed working**
 - [x] Verified CDP keystrokes land while the side panel has focus
-- [x] Export / Import snippets + downloadable example file (import is additive)
+- [x] Export / Import snippets as **YAML** + downloadable example file (import is additive; also reads legacy JSON)
 - [ ] (If the banner is unwanted and synthetic events work) add an optional synthetic-event mode
 - [ ] (Optional) icons, edit-in-place
 

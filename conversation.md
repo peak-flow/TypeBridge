@@ -28,5 +28,9 @@ type-then-Enter, typing-speed setting, and a Release-debugger button.
 - Confirmed list storage = `chrome.storage.local` (per Chrome profile, persists, not synced, not in git).
 - Added **Export / Import** snippets + a **downloadable example file**. Import is additive (appends, never wipes); accepts `{ items: [...] }` or a bare array.
 
+### Update — YAML format
+- Switched export/import + example file from JSON to **YAML** (easier for humans: no quotes/commas, `#` comments, backslashes need no doubling for UNC paths).
+- Vendored `js-yaml` 4.1.0 (CSP-safe, no eval). Import parses YAML and still reads legacy JSON.
+
 ### Next
 Optional polish: synthetic-event mode (to drop the banner), icons, edit-in-place.
