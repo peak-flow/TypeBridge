@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logo.png" alt="TypeBridge" width="640">
+</p>
+
 # TypeBridge
 
 *Bridges your typing across the Remote Desktop gap — click a saved snippet and it types itself into the session, no copy/paste required.*
@@ -76,6 +80,8 @@ it up or move it.
 | File | Purpose |
 |------|---------|
 | `manifest.json` | Extension manifest (Manifest V3). |
+| `icons/` | Toolbar / extension icons (16–128 px). |
+| `logo.png` / `favicon-pic.png` | Brand art (logo used in this README). |
 | `background.js` | The keystroke engine. |
 | `sidepanel.html` / `.css` / `.js` | The snippet-list UI. |
 | `js-yaml.min.js` | Bundled YAML parser for Export/Import (runs offline). |
