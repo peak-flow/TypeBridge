@@ -20,10 +20,11 @@ Windows `Ctrl` mismatch.
 - [x] Keystroke engine (keymap + `Input.dispatchKeyEvent`, Shift handling)
 - [x] Side panel UI: add / delete / reorder snippets, click-to-type, type-then-Enter
 - [x] Settings: typing speed; Release-debugger button
-- [ ] **Load unpacked & test against the real testlab RDP session** ← next
-- [ ] Verify CDP keystrokes land while the side panel has focus (main unknown)
+- [x] Load unpacked & tested against the real testlab RDP session — typing **confirmed working**
+- [x] Verified CDP keystrokes land while the side panel has focus
+- [x] Export / Import snippets + downloadable example file (import is additive)
 - [ ] (If the banner is unwanted and synthetic events work) add an optional synthetic-event mode
-- [ ] (Optional) icons, edit-in-place, import/export snippet list
+- [ ] (Optional) icons, edit-in-place
 
 ## How to load
 1. Chrome → `chrome://extensions` → enable **Developer mode**.

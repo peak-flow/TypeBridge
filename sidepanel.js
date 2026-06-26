@@ -110,4 +110,87 @@ $("#releaseBtn").addEventListener("click", async () => {
   showStatus("Debugger released.", "ok");
 });
 
+// ---- Backup: export / import / example -----------------------------------
+
+// Trigger a file download from text content (works inside the side panel).
+function downloadFile(filename, text) {
+  const blob = new Blob([text], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+// Accept either { items: [...] } or a bare [...] array. Keep only valid
+// entries (must have a string "text"); fill in a label if one is missing.
+function normalizeItems(raw) {
+  const arr = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.items) ? raw.items : null);
+  if (!arr) return null;
+  const cleaned = [];
+  for (const entry of arr) {
+    if (entry && typeof entry.text === "string") {
+      const label = (typeof entry.label === "string" && entry.label.trim())
+        ? entry.label.trim()
+        : entry.text.slice(0, 24);
+      cleaned.push({ label, text: entry.text });
+    }
+  }
+  return cleaned;
+}
+
+$("#exportBtn").addEventListener("click", () => {
+  const payload = {
+    format: "rdp-quick-type",
+    version: 1,
+    items: items.map((it) => ({ label: it.label, text: it.text }))
+  };
+  downloadFile("rdp-quick-type-snippets.json", JSON.stringify(payload, null, 2));
+  showStatus(`Exported ${items.length} snippet(s).`, "ok");
+});
+
+$("#exampleBtn").addEventListener("click", () => {
+  const example = {
+    format: "rdp-quick-type",
+    version: 1,
+    _README: "Each entry in 'items' becomes a button. 'label' is what you see in the list; 'text' is exactly what gets typed. Edit this file in any text editor, then use Import. A plain array like [ {\"label\":\"x\",\"text\":\"y\"} ] also works.",
+    items: [
+      { label: "My username", text: "jsmith" },
+      { label: "Server share", text: "\\\\fileserver\\share\\reports" },
+      { label: "Long note", text: "This whole sentence types out exactly as written." }
+    ]
+  };
+  downloadFile("rdp-quick-type-example.json", JSON.stringify(example, null, 2));
+  showStatus("Downloaded example file — open it in a text editor to see the format.", "ok");
+});
+
+$("#importBtn").addEventListener("click", () => $("#importFile").click());
+
+$("#importFile").addEventListener("change", async (e) => {
+  const file = e.target.files && e.target.files[0];
+  e.target.value = ""; // reset so the same file can be picked again later
+  if (!file) return;
+  try {
+    const data = JSON.parse(await file.text());
+    const incoming = normalizeItems(data);
+    if (!incoming) {
+      showStatus('That file isn\'t in the expected format (needs an "items" list).', "err");
+      return;
+    }
+    if (incoming.length === 0) {
+      showStatus("No valid snippets found in that file.", "err");
+      return;
+    }
+    items.push(...incoming);
+    await saveItems();
+    render();
+    showStatus(`Imported ${incoming.length} snippet(s) — added to your list.`, "ok");
+  } catch (err) {
+    showStatus("Couldn't read that file: " + err.message, "err");
+  }
+});
+
 load();

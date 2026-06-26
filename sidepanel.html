@@ -21,6 +21,15 @@
     <button id="addBtn">Add snippet</button>
   </section>
 
+  <section class="backup">
+    <div class="backup-row">
+      <button id="exportBtn" class="secondary" title="Save your current list to a file">Export…</button>
+      <button id="importBtn" class="secondary" title="Load snippets from a file (added to your list)">Import…</button>
+      <button id="exampleBtn" class="secondary" title="Download a sample file that shows the format">Example file</button>
+    </div>
+    <input id="importFile" type="file" accept=".json,application/json" hidden>
+  </section>
+
   <footer>
     <label class="row">
       <span>Typing speed (ms/key)</span>

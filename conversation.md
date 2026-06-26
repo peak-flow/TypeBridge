@@ -22,6 +22,11 @@ MV3 extension: `manifest.json`, `background.js` (keystroke engine), side panel
 (`sidepanel.html/.css/.js`) with snippet add/delete/reorder, click-to-type and
 type-then-Enter, typing-speed setting, and a Release-debugger button.
 
+### Update — tested & extended
+- Loaded unpacked; typing into the real testlab RDP session **confirmed working**.
+- Explained the Release-debugger button (hands the debug "key" back / hides the yellow banner; auto-reattaches on next type).
+- Confirmed list storage = `chrome.storage.local` (per Chrome profile, persists, not synced, not in git).
+- Added **Export / Import** snippets + a **downloadable example file**. Import is additive (appends, never wipes); accepts `{ items: [...] }` or a bare array.
+
 ### Next
-Load unpacked in Chrome and test against the real testlab RDP session; confirm
-keystrokes land while the side panel has focus.
+Optional polish: synthetic-event mode (to drop the banner), icons, edit-in-place.

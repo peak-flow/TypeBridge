@@ -47,3 +47,7 @@ footer .row { display: flex; justify-content: space-between; align-items: center
 footer input[type=number] { width: 70px; padding: 5px 6px; border: 1px solid #d2d2d7; border-radius: 6px; font: inherit; }
 .secondary { padding: 7px; border: 1px solid #d2d2d7; background: #fff; border-radius: 6px; cursor: pointer; font: inherit; }
 .secondary:hover { background: #f5f5f7; }
+
+.backup { padding: 10px 12px; border-top: 1px solid #ececf0; }
+.backup-row { display: flex; gap: 6px; }
+.backup-row .secondary { flex: 1; font-size: 12px; padding: 7px 4px; }
