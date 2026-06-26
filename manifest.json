@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "TypeBridge",
   "version": "0.1.0",
-  "description": "Click saved snippets to type them as real keystrokes into a web Remote Desktop session — bypassing flaky copy/paste and shortcut mismatches.",
+  "description": "Type saved snippets as keystrokes into web Remote Desktop sessions when copy/paste fails.",
   "permissions": ["debugger", "storage", "sidePanel", "tabs"],
   "background": { "service_worker": "background.js" },
   "icons": {

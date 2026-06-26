@@ -64,6 +64,12 @@ Tips:
 - **Release debugger** (footer) — hides the yellow bar by freeing the tab; it's
   optional, and typing grabs it back automatically.
 
+## Screenshot
+
+<p align="center">
+  <img src="docs/typebridge-side-panel-screenshot.png" alt="TypeBridge side panel with saved snippets" width="360">
+</p>
+
 ## Backups & sharing your list
 
 - **Export…** saves your list to a `.yaml` file.
@@ -74,6 +80,8 @@ Tips:
 The list itself is stored by Chrome on this machine (`chrome.storage.local`). It
 persists across restarts but isn't synced to other computers — use Export to back
 it up or move it.
+
+See [`PRIVACY.md`](PRIVACY.md) for the privacy policy.
 
 ## Files
 
