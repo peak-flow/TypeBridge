@@ -10,6 +10,7 @@ body {
 header { padding: 12px 12px 6px; }
 h1 { font-size: 14px; margin: 0 0 4px; }
 .hint { margin: 0; color: #6b6b70; font-size: 12px; }
+.note { margin: 0 0 2px; color: #6b6b70; font-size: 11px; line-height: 1.35; }
 code { background: #f0f0f3; padding: 0 4px; border-radius: 4px; }
 
 .status { margin: 8px 12px; padding: 6px 9px; border-radius: 6px; font-size: 12px; }
